@@ -109,6 +109,31 @@ const proxyIndicators = [
   'girls who code'
 ];
 
+const sourceLinks = [
+  { label: 'Workday AI lawsuit (CNN)', url: 'https://www.cnn.com/2025/05/22/tech/workday-ai-hiring-discrimination-lawsuit' },
+  { label: 'Workday ADEA case summary', url: 'https://www.lawandtheworkplace.com/2025/06/ai-bias-lawsuit-against-workday-reaches-next-stage-as-court-grants-conditional-certification-of-adea-claim/' },
+  { label: 'Mobley v. Workday agent theory', url: 'https://www.seyfarth.com/news-insights/mobley-v-workday-court-holds-ai-service-providers-could-be-directly-liable-for-employment-discrimination-under-agent-theory.html' },
+  { label: 'NYC Local Law 144', url: 'https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page' },
+  { label: 'FairNow guide to LL144', url: 'https://fairnow.ai/guide/nyc-local-law-144/' },
+  { label: 'LinkedIn: Workday application tips', url: 'https://www.linkedin.com/pulse/10-best-practice-tips-job-applications-using-workday-lisa/' },
+  { label: 'TopResume: ATS basics', url: 'https://topresume.com/career-advice/what-is-an-ats-resume' },
+  { label: 'Workable: how ATS reads resumes', url: 'https://resources.workable.com/stories-and-insights/how-ATS-reads-resumes' },
+  { label: 'LearnWork: automated screening', url: 'https://learnworkecosystemlibrary.com/topics/automated-screening-for-hiring-processes/' },
+  { label: 'LinkedIn: ATS parsing tips', url: 'https://www.linkedin.com/pulse/how-ats-reads-your-resume-kristen-fife-she-her-hers-/' },
+  { label: 'Oleeo: what is an ATS', url: 'https://www.oleeo.com/blog/what-is-an-applicant-tracking-system-ats/' },
+  { label: 'StudyFinds: AI picks white names', url: 'https://studyfinds.org/ai-picks-white-names-over-black-hiring/' },
+  { label: 'People of Color in Tech: name bias study', url: 'https://peopleofcolorintech.com/articles/ai-resume-screening-tools-biased-against-black-male-names-study-finds/' },
+  { label: 'Brookings: LLM screening bias', url: 'https://www.brookings.edu/articles/gender-race-and-intersectional-bias-in-ai-resume-screening-via-language-model-retrieval/' },
+  { label: 'ArXiv: screening bias', url: 'https://arxiv.org/html/2407.20371v1' },
+  { label: 'MIT Tech Review: Amazon scrapped recruiter', url: 'https://www.technologyreview.com/2018/10/10/139858/amazon-ditched-ai-recruitment-software-because-it-was-biased-against-women/' },
+  { label: 'CNBC: Amazon scrapped biased tool', url: 'https://www.cnbc.com/2018/10/10/amazon-scraps-a-secret-ai-recruiting-tool-that-showed-bias-against-women.html' },
+  { label: 'ACLU: why Amazon tool discriminated', url: 'https://www.aclu.org/news/womens-rights/why-amazons-automated-hiring-tool-discriminated-against' },
+  { label: 'ADA AI guidance', url: 'https://www.ada.gov/resources/ai-guidance/' },
+  { label: 'Fisher Phillips: AI resume screeners', url: 'https://www.fisherphillips.com/en/news-insights/ai-resume-screeners.html' },
+  { label: 'MyPerfectResume: ATS checker', url: 'https://www.myperfectresume.com/resume/ats-resume-checker' },
+  { label: 'Workday lawsuit news', url: 'https://www.hrmorning.com/news/ai-hiring-discrimination-workday/' }
+];
+
 const clamp = (value: number, min = 0, max = 100) =>
   Math.min(max, Math.max(min, value));
 
@@ -362,11 +387,11 @@ const App: React.FC = () => {
       <div className="backdrop" />
       <header className="hero">
         <div>
-          <p className="eyebrow">Interactive ATS Bias tester</p>
-          <h1>See how the same resume passes or fails based on invisible settings.</h1>
+          <p className="eyebrow">Workday ATS case study</p>
+          <h1>Workday-style resume screening</h1>
           <p className="lede">
             Adjust parsing knobs, swap names from the UW study (John vs Demetrius vs Kenya),
-            and watch how keywords, formatting, and resume length change the score.
+            and watch how keywords, formatting, and resume length change the score. Framed as a Workday-style case study with new bias laws in view.
           </p>
           <p className="study-link">
             Source study (UW):{' '}
@@ -378,6 +403,29 @@ const App: React.FC = () => {
               https://ojs.aaai.org/index.php/AIES/article/view/31748/33915
             </a>
           </p>
+          <div className="sources-inline">
+            <a
+              href="https://www.linkedin.com/pulse/10-best-practice-tips-job-applications-using-workday-lisa/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Workday tips (LinkedIn)
+            </a>
+            <a
+              href="https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NYC Local Law 144
+            </a>
+            <a
+              href="https://www.cnn.com/2025/05/22/tech/workday-ai-hiring-discrimination-lawsuit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Workday lawsuit (CNN)
+            </a>
+          </div>
           <div className="stat-row">
             <div className="stat-card">
               <p className="stat-label">UW study callback rates</p>
@@ -429,21 +477,98 @@ const App: React.FC = () => {
         </div>
       </header>
 
+      <section className="panel">
+        <div className="card">
+          <div className="card-header">
+            <p className="eyebrow">Workday case study & laws</p>
+          </div>
+          <ul className="bullet-list">
+            <li>
+              Workday AI hiring faces discrimination claims (
+              <a
+                href="https://www.cnn.com/2025/05/22/tech/workday-ai-hiring-discrimination-lawsuit"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CNN
+              </a>
+              ,{' '}
+              <a
+                href="https://www.hrmorning.com/news/ai-hiring-discrimination-workday/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                HRMorning
+              </a>
+              ,{' '}
+              <a
+                href="https://www.seyfarth.com/news-insights/mobley-v-workday-court-holds-ai-service-providers-could-be-directly-liable-for-employment-discrimination-under-agent-theory.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Seyfarth
+              </a>
+              ).
+            </li>
+            <li>
+              NYC Local Law 144 requires bias audits and notices for automated employment decision tools (
+              <a
+                href="https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                official site
+              </a>
+              ,{' '}
+              <a
+                href="https://fairnow.ai/guide/nyc-local-law-144/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                guide
+              </a>
+              ).
+            </li>
+            <li>
+              Candidate tactics for Workday portals (
+              <a
+                href="https://www.linkedin.com/pulse/10-best-practice-tips-job-applications-using-workday-lisa/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              ) plus ATS parsing tips (
+              <a
+                href="https://resources.workable.com/stories-and-insights/how-ATS-reads-resumes"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Workable
+              </a>
+              ).
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <main className="grid">
         <section className="panel">
           <div className="panel-header">
             <div>
               <p className="eyebrow">Input side</p>
-              <h2>Upload or craft a resume</h2>
+              <h2>Upload or type resume</h2>
             </div>
             <div className="chip-row">
               <button className="chip ghost" onClick={() => swapSample(defaultResume)}>
-                Insert sample (engineering)
+                Use sample 1
               </button>
               <button className="chip ghost" onClick={() => swapSample(shortResume)}>
-                Insert shorter resume
+                Use sample 2
               </button>
-              <label className="chip ghost file-chip">
+            </div>
+            <div className="upload-row">
+              <label className="chip ghost file-chip large">
                 Upload .txt or .pdf
                 <input type="file" accept=".txt,.pdf,application/pdf" onChange={handleUpload} />
               </label>
@@ -630,7 +755,6 @@ const App: React.FC = () => {
             <div className="card">
               <div className="card-header">
                 <p className="eyebrow">Parsed resume view</p>
-                <span className="pill ghost">ATS interpretation</span>
               </div>
               <div className="parsed">
                 <div>
@@ -739,7 +863,6 @@ const App: React.FC = () => {
             <div className="card">
               <div className="card-header">
                 <p className="eyebrow">Name swap</p>
-                <span className="pill ghost">Same resume</span>
               </div>
               <div className="name-compare">
                 {nameComparisons.map((entry) => (
@@ -763,7 +886,6 @@ const App: React.FC = () => {
             <div className="card">
               <div className="card-header">
                 <p className="eyebrow">Format impact</p>
-                <span className="pill ghost">Tables & PDFs</span>
               </div>
               <div className="format">
                 <p>
@@ -790,7 +912,6 @@ const App: React.FC = () => {
             <div className="card">
               <div className="card-header">
                 <p className="eyebrow">Proxy indicators</p>
-                <span className="pill ghost">Signals for demographics</span>
               </div>
               <div className="proxy">
                 {proxySignals.length ? (
@@ -815,7 +936,6 @@ const App: React.FC = () => {
             <div className="card wide">
               <div className="card-header">
                 <p className="eyebrow">Demographic pass rates (simulated)</p>
-                <span className="pill ghost">Shifts as you tweak settings</span>
               </div>
               <div className="demo-grid">
                 {demographicStats.map((demo) => (
@@ -834,6 +954,25 @@ const App: React.FC = () => {
               <p className="hint">
                 Higher strictness, PDF uploads, and higher thresholds compress pass rates — and disproportionately lower them for demographic groups that already start lower (e.g., 85% vs 9%).
               </p>
+            </div>
+
+            <div className="card wide">
+              <div className="card-header">
+                <p className="eyebrow">Sources</p>
+              </div>
+              <div className="source-links">
+                {sourceLinks.map((src) => (
+                  <a
+                    key={src.url}
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="source-chip"
+                  >
+                    {src.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </section>
