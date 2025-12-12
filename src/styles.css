@@ -1,16 +1,15 @@
 :root {
   color-scheme: light;
-  --bg: #0c0c0c;
-  --panel: #111111;
-  --card: #0f0f0f;
-  --text: #f5f5f5;
-  --muted: #9f9f9f;
-  --border: rgba(255, 255, 255, 0.08);
-  --pill: rgba(255, 255, 255, 0.1);
-  --good: #d1ff7a;
-  --bad: #ff7a7a;
-  font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+  --bg: #f5f5f5;
+  --panel: #ffffff;
+  --card: #ffffff;
+  --text: #0c0c0c;
+  --muted: #374151;
+  --border: rgba(0, 0, 0, 0.08);
+  --pill: rgba(0, 0, 0, 0.05);
+  --good: #16a34a;
+  --bad: #dc2626;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -49,12 +48,12 @@ body {
   gap: 24px;
   padding: 28px;
   border: 1px solid var(--border);
-  border-radius: 18px;
-  background: #0f0f0f;
+  border-radius: 10px;
+  background: var(--panel);
 }
 
 .eyebrow {
-  color: #a5f3fc;
+  color: #1f2937;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -80,9 +79,9 @@ body {
 }
 
 .stat-card {
-  background: #101010;
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 12px 12px 10px;
 }
 
@@ -124,22 +123,22 @@ body {
 .stat-bar .bar {
   height: 10px;
   background: var(--pill);
-  border-radius: 999px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
 .stat-bar .bar span {
   display: block;
   height: 100%;
-  background: #f5f5f5;
+  background: #0c0c0c;
 }
 
 .name-swap {
   align-self: center;
   padding: 16px;
-  background: #101010;
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .name-buttons {
@@ -154,6 +153,16 @@ body {
   margin: 4px 0 0;
 }
 
+.study-link {
+  font-size: 15px;
+  margin: 6px 0 0;
+}
+
+.study-link a {
+  color: #0c0c0c;
+  text-decoration: underline;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -164,9 +173,9 @@ body {
 .panel {
   position: relative;
   z-index: 1;
-  background: #0f0f0f;
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 10px;
   padding: 18px;
 }
 
@@ -192,20 +201,50 @@ body {
   border: 1px solid var(--border);
   background: var(--pill);
   color: var(--text);
-  border-radius: 999px;
+  border-radius: 8px;
   padding: 8px 12px;
   font-size: 13px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-.chip.ghost {
-  background: transparent;
-}
-
 .chip.small {
   padding: 4px 8px;
   font-size: 12px;
+}
+
+button.chip,
+label.chip {
+  background: #0c0c0c;
+  color: #ffffff;
+  border-color: #0c0c0c;
+  box-shadow: 0 6px 18px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+}
+
+button.chip:hover,
+label.chip:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+button.chip.ghost,
+label.chip.ghost {
+  background: #e9e9e9;
+  border-color: #0c0c0c;
+  color: #0c0c0c;
+  box-shadow: 0 6px 18px -12px rgba(0, 0, 0, 0.15);
+}
+
+button.chip.ghost.active,
+label.chip.ghost.active {
+  background: #0c0c0c;
+  color: #ffffff;
+  border-color: #0c0c0c;
+}
+
+.chip.ghost {
+  background: transparent;
 }
 
 .chip.active {
@@ -220,10 +259,10 @@ body {
 .resume-input {
   width: 100%;
   margin-top: 12px;
-  background: #0a0a0a;
+  background: #ffffff;
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 12px;
   font-size: 14px;
   min-height: 280px;
@@ -238,9 +277,9 @@ body {
 
 .control {
   border: 1px solid var(--border);
-  background: #0f0f0f;
+  background: var(--panel);
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .control-header {
@@ -257,7 +296,7 @@ body {
 .pill {
   background: var(--pill);
   padding: 4px 8px;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 12px;
   border: 1px solid var(--border);
 }
@@ -269,10 +308,10 @@ body {
 .control input[type='text'],
 .control input[type='number'] {
   width: 100%;
-  background: #0a0a0a;
+  background: #ffffff;
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 8px 10px;
   margin-top: 8px;
 }
@@ -301,10 +340,10 @@ body {
 }
 
 .inline-input button {
-  background: #f5f5f5;
+  background: #0c0c0c;
   border: none;
-  color: #0c0c0c;
-  border-radius: 8px;
+  color: #ffffff;
+  border-radius: 6px;
   padding: 8px 12px;
   cursor: pointer;
   font-weight: 700;
@@ -321,7 +360,7 @@ body {
   border: 1px solid var(--border);
   background: var(--card);
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .card.wide {
@@ -333,6 +372,44 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.score-decision {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.decision-box,
+.score-box {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f1f1f1;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.decision-text {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.decision-box.pass .decision-text {
+  color: #6ee7a9;
+}
+
+.decision-box.fail .decision-text {
+  color: #ff7a7a;
+}
+
+.decision-label {
+  font-size: 11px;
+  color: var(--muted);
 }
 
 .parsed {
@@ -368,14 +445,14 @@ body {
   height: 10px;
   width: 100%;
   background: var(--pill);
-  border-radius: 999px;
+  border-radius: 6px;
   overflow: hidden;
   margin-bottom: 8px;
 }
 
 .gauge-fill {
   height: 100%;
-  background: #f5f5f5;
+  background: #0c0c0c;
 }
 
 .score-grid {
@@ -394,17 +471,17 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 10px 12px;
   border: 1px solid var(--border);
 }
 
 .decision.pass {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(22, 163, 74, 0.12);
 }
 
 .decision.fail {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(220, 38, 38, 0.12);
 }
 
 .name-compare .name-row {
@@ -419,7 +496,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #f5f5f5;
+  background: #0c0c0c;
 }
 
 .gauge.tiny {

@@ -362,11 +362,21 @@ const App: React.FC = () => {
       <div className="backdrop" />
       <header className="hero">
         <div>
-          <p className="eyebrow">Interactive ATS Bias Lab</p>
+          <p className="eyebrow">Interactive ATS Bias tester</p>
           <h1>See how the same resume passes or fails based on invisible settings.</h1>
           <p className="lede">
             Adjust parsing knobs, swap names from the UW study (John vs Demetrius vs Kenya),
             and watch how keywords, formatting, and resume length change the score.
+          </p>
+          <p className="study-link">
+            Source study (UW):{' '}
+            <a
+              href="https://ojs.aaai.org/index.php/AIES/article/view/31748/33915"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://ojs.aaai.org/index.php/AIES/article/view/31748/33915
+            </a>
           </p>
           <div className="stat-row">
             <div className="stat-card">
@@ -604,9 +614,15 @@ const App: React.FC = () => {
                 Parsing is sensitive to names, formatting, section weights, and the strictness of keyword matching.
               </p>
             </div>
-            <div className={`decision ${decision === 'Pass' ? 'pass' : 'fail'}`}>
-              <span>{decision}</span>
-              <strong>{Math.round(finalScore)}</strong>
+            <div className="score-decision">
+              <div className={`decision-box ${decision === 'Pass' ? 'pass' : 'fail'}`}>
+                <span className="decision-label">Decision</span>
+                <strong className="decision-text">{decision}</strong>
+              </div>
+              <div className="score-box">
+                <span className="decision-label">Score</span>
+                <strong>{Math.round(finalScore)}</strong>
+              </div>
             </div>
           </div>
 
