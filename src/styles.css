@@ -345,7 +345,6 @@ label.chip.ghost.active {
 
 .control.three-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 10px;
 }
 
@@ -354,6 +353,20 @@ label.chip.ghost.active {
   flex-direction: column;
   gap: 4px;
   font-size: 14px;
+}
+
+.weight-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.format-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 6px;
 }
 
 .inline-input {
@@ -447,27 +460,21 @@ label.chip.ghost.active {
 }
 
 .source-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
+  display: none;
 }
 
-.source-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
+.source-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+  display: grid;
+  gap: 6px;
+}
+
+.source-list a {
   color: #0c0c0c;
-  background: #ffffff;
-  box-shadow: 0 4px 14px -10px rgba(0, 0, 0, 0.35);
-  font-size: 13px;
-}
-
-.source-chip:hover {
-  background: #f0f0f0;
+  text-decoration: underline;
+  font-size: 14px;
 }
 
 .parsed {

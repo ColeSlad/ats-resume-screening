@@ -195,10 +195,10 @@ const App: React.FC = () => {
   });
   const [minYears, setMinYears] = useState(3);
   const [requiredInput, setRequiredInput] = useState(
-    'React, JavaScript, Accessibility'
+    'React, JavaScript, Python'
   );
   const [preferredInput, setPreferredInput] = useState(
-    'TypeScript, Node.js, Leadership, Inclusive design'
+    'TypeScript, Node.js, Leadership, Agile Development'
   );
   const [knockouts, setKnockouts] = useState<string[]>([
     'No degree listed',
@@ -388,7 +388,7 @@ const App: React.FC = () => {
       <header className="hero">
         <div>
           <p className="eyebrow">Workday ATS case study</p>
-          <h1>Workday-style resume screening</h1>
+          <h1>Workday style resume screening</h1>
           <p className="lede">
             Adjust parsing knobs, swap names from the UW study (John vs Demetrius vs Kenya),
             and watch how keywords, formatting, and resume length change the score. Framed as a Workday-style case study with new bias laws in view.
@@ -604,28 +604,32 @@ const App: React.FC = () => {
 
             <div className="control three-col">
               <div className="control-header">
-                <p>Section weights (must total 100)</p>
+                <div>
+                  <p>Section weights (must total 100)</p>
+                </div>
                 <span className="pill">
                   {sectionWeights.education + sectionWeights.experience + sectionWeights.skills}%
                 </span>
               </div>
-              {(['experience', 'skills', 'education'] as const).map((section) => (
-                <label key={section}>
-                  <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
-                  <input
-                    type="number"
-                    min={0}
-                    max={100}
-                    value={sectionWeights[section]}
-                    onChange={(e) =>
-                      setSectionWeights((prev) => ({
-                        ...prev,
-                        [section]: Number(e.target.value)
-                      }))
-                    }
-                  />
-                </label>
-              ))}
+              <div className="weight-row">
+                {(['experience', 'skills', 'education'] as const).map((section) => (
+                  <label key={section}>
+                    <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={100}
+                      value={sectionWeights[section]}
+                      onChange={(e) =>
+                        setSectionWeights((prev) => ({
+                          ...prev,
+                          [section]: Number(e.target.value)
+                        }))
+                      }
+                    />
+                  </label>
+                ))}
+              </div>
             </div>
 
             <div className="control">
@@ -673,33 +677,10 @@ const App: React.FC = () => {
 
             <div className="control">
               <div className="control-header">
-                <p>Knockout criteria</p>
-                <span className="pill">{knockouts.length}</span>
-              </div>
-              <div className="chip-row">
-                {knockouts.map((item) => (
-                  <span key={item} className="chip small">
-                    {item}
-                  </span>
-                ))}
-              </div>
-              <div className="inline-input">
-                <input
-                  type="text"
-                  value={newKnockout}
-                  onChange={(e) => setNewKnockout(e.target.value)}
-                  placeholder="Add knockout (auto reject)"
-                />
-                <button onClick={handleAddKnockout}>Add</button>
-              </div>
-            </div>
-
-            <div className="control">
-              <div className="control-header">
                 <p>Format impact</p>
                 <span className="pill">{formatProfiles[formatStyle].label}</span>
               </div>
-              <div className="chip-row">
+              <div className="format-row">
                 {(Object.keys(formatProfiles) as FormatStyle[]).map((style) => (
                   <button
                     key={style}
@@ -960,19 +941,15 @@ const App: React.FC = () => {
               <div className="card-header">
                 <p className="eyebrow">Sources</p>
               </div>
-              <div className="source-links">
+              <ul className="source-list">
                 {sourceLinks.map((src) => (
-                  <a
-                    key={src.url}
-                    href={src.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="source-chip"
-                  >
-                    {src.label}
-                  </a>
+                  <li key={src.url}>
+                    <a href={src.url} target="_blank" rel="noopener noreferrer">
+                      {src.label}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </section>
