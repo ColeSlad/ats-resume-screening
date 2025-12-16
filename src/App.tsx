@@ -372,10 +372,50 @@ const App: React.FC = () => {
         </button>
       </div>
       {view === 'problem' ? (
-        <section className="panel">
-          <h2>Problem & solution</h2>
-          <p className="lede">Use this canvas to outline the hiring problem, risks, and your proposed solution.</p>
-          <p className="hint">Switch back to “Main experience” for the interactive ATS demo.</p>
+        <section className="panel problem-section">
+          <h2>Problem</h2>
+          <p>
+            Automated hiring systems, like Workday's Applicant Tracking System (ATS), like to "guarantee efficiency,” but we showed that there are many problems in the system's design, use, and fairness. At the core, everyone thinks this system just parses for keywords and looks for thresholds for experience and formatting, but now we can see these systems reproduce discrimination. This makes us question how these systems get to decide who can pay rent and feed their families.
+          </p>
+          <p>
+            The University of Washington study on names in ATS reveals one of its biggest problems. Identical resumes were submitted, and white-sounding names, such as “John,” would receive callback rates near 85 - 91%, while black-sounding names, such as “Demetrius,” would receive rates near 9 - 15%. This discrepancy shows how there is bias in the system. It turns characteristics into hiring decisions, which shows inherent racism.
+          </p>
+          <p>
+            A slightly less important issue is that shorter resumes increased callback outcome by 22%, and other formats had lower scores. This problem shows how a skilled applicant can be turned away just for the formatting of their resume.
+          </p>
+          <p>
+            These problems in the system have been built into the structure throughout history. Wang, Kapoor, Barocas, and Narayan(2023) speak on such “predicative optimization” . In hiring, these systems try to be the most efficient by being trained on past hiring patterns. Historical data favored white candidates, and our new ATS system often reproduces the same results. In the article Machine Bias, similar dynamics were found in the COMPAS risk assessment. Even though these tools are supposed to be neutral, the system predicted higher risk ratings for black entries(Angwin et al., 2016). These systems often claim neutrality but highly rely on the flawed and discriminatory historical data they are trained on.
+          </p>
+          <p>
+            Another major ethical concern is the transparency in these systems. Annany and Crawford (2016) state that transparency alone does not guarantee fairness. Candidates receive rejection letters and low scores, but never understand the biases behind the decisions. The accountability behind these systems is hidden, getting rid of the ability to fight back. Nissenbaum (1996) highlights accountability by emphasizing teh importance of understanding where responsibility is diffused. In ATS systems, who is responsible? Workday, the employer, the algorithm, or something else?
+          </p>
+          <p>
+            The secretive nature of these systems that parse resumes and assign scores is unclear. Candidates and sometimes even recruiters cannot see the value of inputs and how they adjust the output. As Garvie states, when discussing face recognition, if biased data enters the system, biased outputs will be produced, but the process remains hidden. This discreetnature makes it impossible for rejected candidates to fight back. It also questions legitimacy, as Wang (2023) argues that systems without transparency cannot be fair or accountable.
+          </p>
+          <p>
+            Together, these faults of the ATS system reveal the corrupt ethics behind the gatekeeper of opportunity. The scanning decides who gets to love a job and who gets left behind to struggle. Especially in an era of rising prices and competition, it is at utmost importance that these systems do not form bias.
+          </p>
+
+          <h3>Solution</h3>
+          <p>
+            The core issue with AI-based resume screening, as the one Workday uses, is that the algorithm is evaluating factors outside of what is legal and often making a decision before there is a chance for human review. According to an article by the ACLU, these tools are not eliminating human bias, just laundering it through software. The current regulation surrounding the algorithms used for resume screening is a few state laws and extrapolations from decades-old anti-discrimination laws, such as the Civil Rights Act of 1964 and the Americans with Disabilities Act of 1990. A strong legal solution should be based on the EU AI Act and NYC Local Law 144. The NYC law states that companies must not use an automated employment decision tool without performing a yearly audit conducted by a third party. The EU law is stricter, classifying recruitment/employment algorithms as high risk, prohibiting them from making any decisions based on biometric or social data. It also has strict rules about transparency, training, and reporting.
+          </p>
+          <p>
+            We propose that automated employment decision tools should be under strict regulation with an emphasis on transparency. Automated employment tools should be subject to annual audits. To address the issue of intellectual property rights, we can look at the current structure of the EU law. They respect a company’s right to have trade secrets; they do not allow “trade secrets” to blanket everything about the algorithm and still require reports of the training data used and the metrics of the model to prevent any kind of discrimination. We further argue that these automated tools should never be the final word in hiring. However, for large volumes of data (in this case, resumes) having a person oversee everything an algorithm does creates a bottleneck.  In contrast to a Human-in-the-Loop system, where human oversight is applied to every aspect of the model's operation, a final check performed by a human would be far more efficient and have essentially the same level of effectiveness in preventing bias.
+          </p>
+
+          <div className="cite-list">
+            <p className="tiny">References</p>
+            <ul>
+              <li>Ananny, M., & Crawford, K. (2016). Seeing without knowing: Limitations of transparency in algorithmic accountability. New Media & Society, 20(3), 973–989.</li>
+              <li>Angwin, J., Larson, J., Mattu, S., & Kirchner, L. (2016). Machine bias. ProPublica. Retrieved from https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing</li>
+              <li>Friedler, S. A., Scheidegger, C., & Venkatasubramanian, S. (2021). The (im)possibility of fairness: Different value systems require different mechanisms for fair decision making. Communications of the ACM, 64(4), 136–143.</li>
+              <li>Garvie, C. (2019). Garbage in, garbage out: Face recognition on flawed data. Georgetown Law Center on Privacy & Technology.</li>
+              <li>Nissenbaum, H. (1996). Accountability in a computerized society. Science and Engineering Ethics, 2(1), 25–42.</li>
+              <li>Wang, A., Kapoor, S., Barocas, S., & Narayan, S. (2023). Against predictive optimization: On the legitimacy of decision-making algorithms that optimize predictive accuracy. Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency (FAccT), 1–12.</li>
+            </ul>
+          </div>
+          <p className="hint">Switch back to “Main page” at the top</p>
         </section>
       ) : (
       <>

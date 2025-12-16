@@ -172,6 +172,30 @@ body {
   text-decoration: underline;
 }
 
+.problem-section {
+  display: grid;
+  gap: 10px;
+}
+
+.problem-section h3 {
+  margin: 6px 0 2px;
+}
+
+.cite-list {
+  margin-top: 8px;
+  padding-left: 16px;
+}
+
+.cite-list ul {
+  margin: 6px 0 0;
+  padding-left: 16px;
+}
+
+.cite-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
 .study-link {
   font-size: 15px;
   margin: 6px 0 0;
