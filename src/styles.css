@@ -57,6 +57,10 @@ body {
   color: #ffffff;
 }
 
+.authors {
+  margin-bottom: 14px;
+}
+
 .hero {
   position: relative;
   z-index: 1;

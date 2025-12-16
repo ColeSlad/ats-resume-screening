@@ -372,6 +372,11 @@ const App: React.FC = () => {
           Problem & solution
         </button>
       </div>
+      <div className="authors">
+        <p className="eyebrow">Authors</p>
+        <p className="lede">Site created by Cole Sladowsky</p>
+        <p className="lede">Snehit Shandangi, Vineeth Yenduri, Rishi Mohla</p>
+      </div>
       {view === 'problem' ? (
         <section className="panel problem-section">
           <h2>Problem</h2>
