@@ -40,6 +40,12 @@ body {
   background: transparent;
 }
 
+.top-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .hero {
   position: relative;
   z-index: 1;

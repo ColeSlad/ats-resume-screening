@@ -186,6 +186,7 @@ const App: React.FC = () => {
   const [selectedName, setSelectedName] = useState<keyof typeof nameBiasProfiles>(
     'John'
   );
+  const [view, setView] = useState<'main' | 'problem'>('main');
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
   const [keywordStrictness, setKeywordStrictness] = useState(70);
   const [sectionWeights, setSectionWeights] = useState<SectionWeights>({
@@ -200,12 +201,6 @@ const App: React.FC = () => {
   const [preferredInput, setPreferredInput] = useState(
     'TypeScript, Node.js, Leadership, Agile Development'
   );
-  const [knockouts, setKnockouts] = useState<string[]>([
-    'No degree listed',
-    'Employment gap > 12 months',
-    'Generic resume format'
-  ]);
-  const [newKnockout, setNewKnockout] = useState('');
   const [formatStyle, setFormatStyle] = useState<FormatStyle>('plain');
   const [passThreshold, setPassThreshold] = useState(70);
 
@@ -259,14 +254,6 @@ const App: React.FC = () => {
   const preferredMatches = preferredKeywords.filter(findKeyword);
   const missingRequired = requiredKeywords.filter((kw) => !findKeyword(kw));
 
-  const knockoutTriggered = useMemo(
-    () =>
-      knockouts.some(
-        (item) => item && lowerResume.includes(item.toLowerCase())
-      ),
-    [knockouts, lowerResume]
-  );
-
   const sectionWeightFactor =
     (sectionWeights.experience * 0.5 +
       sectionWeights.skills * 0.3 +
@@ -301,11 +288,8 @@ const App: React.FC = () => {
   if (yearsExperience < minYears) {
     adjustedScore -= 10;
   }
-  if (knockoutTriggered) {
-    adjustedScore = 0;
-  }
   const finalScore = clamp(adjustedScore);
-  const decision = finalScore >= passThreshold && !knockoutTriggered ? 'Pass' : 'Reject';
+  const decision = finalScore >= passThreshold ? 'Pass' : 'Reject';
 
   const demographicStats = demographicBase.map((demo) => {
     const fairnessDrag =
@@ -372,12 +356,6 @@ const App: React.FC = () => {
     reader.readAsText(file);
   };
 
-  const handleAddKnockout = () => {
-    if (!newKnockout.trim()) return;
-    setKnockouts((prev) => [...prev, newKnockout.trim()]);
-    setNewKnockout('');
-  };
-
   const swapSample = (sample: string) => {
     setResumeText(sample);
   };
@@ -385,6 +363,22 @@ const App: React.FC = () => {
   return (
     <div className="page">
       <div className="backdrop" />
+      <div className="top-toggle">
+        <button className={`chip ${view === 'main' ? 'active' : ''}`} onClick={() => setView('main')}>
+          Main page
+        </button>
+        <button className={`chip ${view === 'problem' ? 'active' : ''}`} onClick={() => setView('problem')}>
+          Problem & solution
+        </button>
+      </div>
+      {view === 'problem' ? (
+        <section className="panel">
+          <h2>Problem & solution</h2>
+          <p className="lede">Use this canvas to outline the hiring problem, risks, and your proposed solution.</p>
+          <p className="hint">Switch back to “Main experience” for the interactive ATS demo.</p>
+        </section>
+      ) : (
+      <>
       <header className="hero">
         <div>
           <p className="eyebrow">Workday ATS case study</p>
@@ -645,7 +639,7 @@ const App: React.FC = () => {
                 onChange={(e) => setMinYears(Number(e.target.value))}
               />
               <p className="hint">
-                Resume currently shows ~{yearsExperience} yrs. Below threshold costs points; knockouts always reject.
+                Resume currently shows ~{yearsExperience} yrs. Below threshold costs points.
               </p>
             </div>
 
@@ -832,11 +826,6 @@ const App: React.FC = () => {
                     <strong>{yearsExperience} yrs</strong>
                     <p className="hint">Min threshold: {minYears} yrs</p>
                   </div>
-                  <div>
-                    <p className="tiny">Knockout</p>
-                    <strong>{knockoutTriggered ? 'Triggered' : 'None'}</strong>
-                    <p className="hint">Auto reject when present</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -954,6 +943,8 @@ const App: React.FC = () => {
           </div>
         </section>
       </main>
+      </>
+      )}
     </div>
   );
 };
