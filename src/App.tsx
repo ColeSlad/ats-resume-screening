@@ -203,6 +203,7 @@ const App: React.FC = () => {
   );
   const [formatStyle, setFormatStyle] = useState<FormatStyle>('plain');
   const [passThreshold, setPassThreshold] = useState(70);
+  const [workdayTab, setWorkdayTab] = useState<'case' | 'io'>('case');
 
   const lowerResume = resumeText.toLowerCase();
 
@@ -512,78 +513,126 @@ const App: React.FC = () => {
       </header>
 
       <section className="panel">
-        <div className="card">
-          <div className="card-header">
-            <p className="eyebrow">Workday case study & laws</p>
-          </div>
-          <ul className="bullet-list">
-            <li>
-              Workday AI hiring faces discrimination claims (
-              <a
-                href="https://www.cnn.com/2025/05/22/tech/workday-ai-hiring-discrimination-lawsuit"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CNN
-              </a>
-              ,{' '}
-              <a
-                href="https://www.hrmorning.com/news/ai-hiring-discrimination-workday/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                HRMorning
-              </a>
-              ,{' '}
-              <a
-                href="https://www.seyfarth.com/news-insights/mobley-v-workday-court-holds-ai-service-providers-could-be-directly-liable-for-employment-discrimination-under-agent-theory.html"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Seyfarth
-              </a>
-              ).
-            </li>
-            <li>
-              NYC Local Law 144 requires bias audits and notices for automated employment decision tools (
-              <a
-                href="https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                official site
-              </a>
-              ,{' '}
-              <a
-                href="https://fairnow.ai/guide/nyc-local-law-144/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                guide
-              </a>
-              ).
-            </li>
-            <li>
-              Candidate tactics for Workday portals (
-              <a
-                href="https://www.linkedin.com/pulse/10-best-practice-tips-job-applications-using-workday-lisa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              ) plus ATS parsing tips (
-              <a
-                href="https://resources.workable.com/stories-and-insights/how-ATS-reads-resumes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Workable
-              </a>
-              ).
-            </li>
-          </ul>
+        <div className="sub-toggle">
+          <button
+            className={`chip ghost ${workdayTab === 'case' ? 'active' : ''}`}
+            onClick={() => setWorkdayTab('case')}
+          >
+            Case study & laws
+          </button>
+          <button
+            className={`chip ghost ${workdayTab === 'io' ? 'active' : ''}`}
+            onClick={() => setWorkdayTab('io')}
+          >
+            Inputs & outputs
+          </button>
         </div>
+
+        {workdayTab === 'case' ? (
+          <div className="card">
+            <div className="card-header">
+              <p className="eyebrow">Workday case study & laws</p>
+            </div>
+            <ul className="bullet-list">
+              <li>
+                Workday AI hiring faces discrimination claims (
+                <a
+                  href="https://www.cnn.com/2025/05/22/tech/workday-ai-hiring-discrimination-lawsuit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  CNN
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.hrmorning.com/news/ai-hiring-discrimination-workday/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  HRMorning
+                </a>
+                ,{' '}
+                <a
+                  href="https://www.seyfarth.com/news-insights/mobley-v-workday-court-holds-ai-service-providers-could-be-directly-liable-for-employment-discrimination-under-agent-theory.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Seyfarth
+                </a>
+                ).
+              </li>
+              <li>
+                NYC Local Law 144 requires bias audits and notices for automated employment decision tools (
+                <a
+                  href="https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  official site
+                </a>
+                ,{' '}
+                <a
+                  href="https://fairnow.ai/guide/nyc-local-law-144/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  guide
+                </a>
+                ).
+              </li>
+              <li>
+                Candidate tactics for Workday portals (
+                <a
+                  href="https://www.linkedin.com/pulse/10-best-practice-tips-job-applications-using-workday-lisa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                ) plus ATS parsing tips (
+                <a
+                  href="https://resources.workable.com/stories-and-insights/how-ATS-reads-resumes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Workable
+                </a>
+                ).
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className="card">
+            <div className="card-header">
+              <p className="eyebrow">What Workday-style ATS reads and returns</p>
+            </div>
+            <ul className="bullet-list">
+              <li>
+                Inputs parsed: resume text/PDF (experience, education, skills), job titles normalized to levels, dates/time-in-role, employment gaps, degree keywords, location, and requisition attributes (skills/competencies, certifications, location filters) that Workday uses to match candidates to job families.
+              </li>
+              <li>
+                Parsing/ML features: keyword tokens + synonyms, seniority/time-in-role, inferred years of experience, school/organization names, and formatting cues (tables/columns) that can lower parse confidence. Workday’s “Skills Cloud” style models map titles to skills using embeddings to rank fit against requisition skills.
+              </li>
+              <li>
+                Outputs: section-level relevance scores, overall ranking vs. pass threshold, flags for parse loss/format issues, and implicit demographic proxies (names, schools, orgs) that can influence ranking—lawsuit filings allege age/disability impacts when models weigh gaps, dates, and accommodation language (CNN; HRMorning; Seyfarth).
+              </li>
+              <li>
+                Decision: pass/reject plus rank in candidate stack; surfaced to recruiters with limited transparency into feature weighting. Workday-facing recruiters often see a scored stack but not the feature contributions (opacity cited in complaint coverage).
+              </li>
+            </ul>
+            <div className="cite-list">
+              <p className="tiny">References</p>
+              <ul>
+                <li>Workable: How ATS reads resumes — sections, dates, headers.</li>
+                <li>Kristen Fife: ATS parsing tips — title/section labeling impacts parsing.</li>
+                <li>TopResume: ATS basics — keywords, headers, formatting effects.</li>
+                <li>Workday Skills Cloud approach (title-to-skill mapping in requisition matching).</li>
+                <li>UW study: callback disparities by name.</li>
+                <li>CNN/HRMorning/Seyfarth: Workday AI lawsuit coverage and opacity/age-disability allegations.</li>
+              </ul>
+            </div>
+          </div>
+        )}
       </section>
 
       <main className="grid">
